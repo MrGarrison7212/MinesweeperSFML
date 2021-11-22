@@ -24,6 +24,7 @@ int main()
 
 	sf::Sprite mines(stuff);
 
+	//adding fields and mines
 
 	for (int i = 1; i <= 10; i++) {
 		for (int j = 1; j <= 10; j++) {
@@ -36,10 +37,20 @@ int main()
 			}
 		}
 	}
-
+	//adding numbers based on distance from mines
 	for (int i = 1; i <= 10; i++) {
 		for (int j = 1; j <= 10; j++) {
-
+			int n = 0;
+			if (grid[i][j] == 9) continue;
+			if (grid[i + 1][j] == 9) n++;
+			if (grid[i][j + 1] == 9) n++;
+			if (grid[i - 1][j] == 9) n++;
+			if (grid[i][j - 1] == 9) n++;
+			if (grid[i + 1][j + 1] == 9) n++;
+			if (grid[i - 1][j - 1] == 9) n++;
+			if (grid[i + 1][j - 1] == 9) n++;
+			if (grid[i - 1][j + 1] == 9) n++;
+			grid[i][j] = n;
 		}
 	}
 
