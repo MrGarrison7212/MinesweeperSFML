@@ -28,6 +28,18 @@ int main()
 	for (int i = 1; i <= 10; i++) {
 		for (int j = 1; j <= 10; j++) {
 			sgrid[i][j] = 10;
+			if (rand() % 5 == 0) {
+				grid[i][j] = 9;
+			}
+			else {
+				grid[i][j] = 0;
+			}
+		}
+	}
+
+	for (int i = 1; i <= 10; i++) {
+		for (int j = 1; j <= 10; j++) {
+
 		}
 	}
 
@@ -41,6 +53,7 @@ int main()
 		window.clear(sf::Color::White);
 		for (int i = 1; i <= 10; i++) {
 			for (int j = 1; j <= 10; j++) {
+				sgrid[i][j] = grid[i][j];
 				mines.setTextureRect(sf::IntRect(sgrid[i][j]*w, 0, w, w));
 				mines.setPosition(i*w, j*w);
 				window.draw(mines);
