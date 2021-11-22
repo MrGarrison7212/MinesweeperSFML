@@ -7,12 +7,36 @@
 
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(800, 600), "SFML Works!");
+	srand(time(0));
+
+	sf::RenderWindow window(sf::VideoMode(400, 400), "Minesweeper baby!");
+
+
+	//mines
+
+	int w = 32;
+	int grid[12][12];
+	int sgrid[12][12];
+
+	sf::Texture stuff;
+	
+	stuff.loadFromFile("Data/tiles.jpg");
+
+	sf::RectangleShape mines;
+	mines.setTexture(&stuff);
+
+	for (int i = 1; i <= 10; i++) {
+		for (int j = 1; j <= 10; j++) {
+			sgrid[i][j] = 10;
+		}
+	}
 
 	while (window.isOpen()) {
 		sf::Event e;
 		while (window.pollEvent(e)) {
-
+			if (e.type == sf::Event::Closed) {
+				window.close();
+			}
 		}
 		window.clear();
 		window.display();
