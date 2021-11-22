@@ -55,16 +55,33 @@ int main()
 	}
 
 	while (window.isOpen()) {
+
+		sf::Vector2i position = sf::Mouse::getPosition(window);
+		int x = position.x / w;
+		int y = position.y / w;
+
 		sf::Event e;
 		while (window.pollEvent(e)) {
 			if (e.type == sf::Event::Closed) {
 				window.close();
 			}
+			//events, left&right mouseclick
+			if (e.type == sf::Event::MouseButtonPressed) {
+				if (e.key.code == sf::Mouse::Left) {
+					sgrid[x][y] = grid[x][y];
+				}
+				else if (e.key.code == sf::Mouse::Right) {
+					sgrid[x][y] = 11;
+				}
+			}
+
 		}
 		window.clear(sf::Color::White);
 		for (int i = 1; i <= 10; i++) {
 			for (int j = 1; j <= 10; j++) {
-				sgrid[i][j] = grid[i][j];
+				if (sgrid[x][y] == 9) {
+					sgrid[i][j] = grid[i][j];
+				}
 				mines.setTextureRect(sf::IntRect(sgrid[i][j]*w, 0, w, w));
 				mines.setPosition(i*w, j*w);
 				window.draw(mines);
