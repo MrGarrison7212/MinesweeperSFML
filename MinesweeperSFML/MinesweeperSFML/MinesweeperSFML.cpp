@@ -22,8 +22,8 @@ int main()
 	
 	stuff.loadFromFile("Data/tiles.jpg");
 
-	sf::RectangleShape mines;
-	mines.setTexture(&stuff);
+	sf::Sprite mines(stuff);
+
 
 	for (int i = 1; i <= 10; i++) {
 		for (int j = 1; j <= 10; j++) {
@@ -38,7 +38,14 @@ int main()
 				window.close();
 			}
 		}
-		window.clear();
+		window.clear(sf::Color::White);
+		for (int i = 1; i <= 10; i++) {
+			for (int j = 1; j <= 10; j++) {
+				mines.setTextureRect(sf::IntRect(sgrid[i][j]*w, 0, w, w));
+				mines.setPosition(i*w, j*w);
+				window.draw(mines);
+			}
+		}
 		window.display();
 	}
 
